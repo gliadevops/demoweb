@@ -1,7 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME', '.']
-  id: 'build'
+  id: 'build-gcr'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'registry-cn.gliavideo.cn/test/demoweb:$TAG_NAME', '.']
+  id: 'build-ali'
 - name: 'ubuntu'
   args: ['bash', './test.sh']
 images: ['gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','registry-cn.gliavideo.cn/test/demoweb:$TAG_NAME']
