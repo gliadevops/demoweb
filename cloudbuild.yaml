@@ -1,10 +1,10 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME', '.']
+  args: ['build', '-t', 'asia.gcr.io/$PROJECT_ID/living-bio/demoweb:$TAG_NAME', '.']
   id: 'build-gcr'
 - name: 'gcr.io/living-bio/workspace'
   args: ['ssh','-o','StrictHostKeyChecking=no','rundeck@104.155.232.66','/home/rundeck/project/sync-registry/script/sync-single.sh', 'demoweb', '$TAG_NAME']
   id: 'build-ali'
 - name: 'ubuntu'
   args: ['bash', './test.sh']
-images: ['gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','registry-cn.gliavideo.cn/test/demoweb:$TAG_NAME']
+images: ['asia.gcr.io/$PROJECT_ID/living-bio/demoweb:$TAG_NAME','registry-cn.gliavideo.cn/living-bio/demoweb:$TAG_NAME']
