@@ -3,8 +3,6 @@ steps:
   args: ['build', '-t', 'asia.gcr.io/$PROJECT_ID/demoweb:$TAG_NAME', '.']
   id: 'build-gcr'
 - name: 'gcr.io/living-bio/workspace'
-  args: ['ssh','-o','StrictHostKeyChecking=no','rundeck@104.155.232.66','/home/rundeck/project/sync-registry/script/sync-single.sh', 'demoweb', '$TAG_NAME']
+  args: ['bash','/script/sync-ali.sh','demoweb','$TAG_NAME']
   id: 'build-ali'
-- name: 'ubuntu'
-  args: ['bash', './test.sh']
 images: ['asia.gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
