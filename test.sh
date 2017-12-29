@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "Call bash success..."
+echo "Call bash success... "
