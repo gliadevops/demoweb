@@ -5,4 +5,6 @@ steps:
 - name: 'gcr.io/living-bio/workspace'
   args: ['bash','/script/sync-ali.sh','demoweb','$TAG_NAME']
   id: 'build-ali'
+  waitFor:
+  - 'build-gcr'
 images: ['asia.gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
