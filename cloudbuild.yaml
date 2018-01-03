@@ -1,3 +1,4 @@
+timeout: 1800s
 steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'asia.gcr.io/$PROJECT_ID/demoweb:$TAG_NAME', '.']
@@ -10,4 +11,3 @@ steps:
   id: 'build-ali'
   waitFor:
   - 'build-gcr'
-images: ['asia.gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
