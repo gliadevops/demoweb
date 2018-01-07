@@ -14,8 +14,8 @@ steps:
   args: ['ls']
   id: 'ls-pwd'
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply","-f","g8/deployment.yaml"]
-  #args: ['set', 'image', "deployment/demoweb", "demoweb=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME"]
+  args: ["apply","-f","g8/deployment.yaml"]
+  #args: ["set", "image", "deployment/demoweb", "demoweb=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME"]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=studio'
