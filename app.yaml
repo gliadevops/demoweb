@@ -1,4 +1,4 @@
-project: simon-lab
+project: living-bio
 application: demoweb 
 port: 80
 domain: simondemo.githubhero.com
