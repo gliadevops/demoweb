@@ -7,11 +7,11 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
   id: 'push-gcr'
 - name: 'gcr.io/living-bio/workspace'
+  args: ['g8','deploy','app.yaml','--dry']
+  # args: ['bash','/script/sync-ali.sh','demoweb','$TAG_NAME']
+  id: 'g8'
+- name: 'gcr.io/living-bio/workspace'
   args: ['ls']
   id: 'ls-pwd'
-- name: 'gcr.io/living-bio/workspace'
-  args: ['g8','deploy','app.yaml']
-  # args: ['bash','/script/sync-ali.sh','demoweb','$TAG_NAME']
-  id: 'build-ali'
   waitFor:
-  - 'ls-pwd'
+  - 'g8'
