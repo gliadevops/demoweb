@@ -7,7 +7,7 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
   id: 'push-gcr'
 - name: 'gliadevops/g8-docker'
-  args: ['g8','deploy','app.yaml','--dry']
+  args: ['g8','deploy','app.yaml','--image-url=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','--dry']
   id: 'g8'
 - name: 'gliadevops/g8-docker'
   args: ['ls']
