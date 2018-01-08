@@ -6,19 +6,17 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
   id: 'push-gcr'
-- name: 'gcr.io/living-bio/workspace'
+- name: 'gliadevops/g8-docker'
   args: ['g8','deploy','app.yaml','--dry']
-  # args: ['bash','/script/sync-ali.sh','demoweb','$TAG_NAME']
   id: 'g8'
-- name: 'gcr.io/living-bio/workspace'
+- name: 'gliadevops/g8-docker'
   args: ['ls']
   id: 'ls-pwd'
 - name: 'gcr.io/cloud-builders/kubectl'
-  args: ["apply","-f","g8/deployment.yaml"]
+  args: ["apply","-f","g8"]
   #args: ["set", "image", "deployment/demoweb", "demoweb=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME"]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=studio'
-  wait_for: ['build']
   waitFor:
   - 'g8'
