@@ -7,14 +7,10 @@ steps:
   args: ['push', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
   id: 'push-gcr'
 - name: 'gliadevops/g8-docker'
-  args: ['g8','deploy','app.yaml','--image-url=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','--dry']
+  args: ['g8','deploy','app.yaml','--image-url=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','--version=$TAG_NAME','--dry']
   id: 'g8'
-- name: 'gliadevops/g8-docker'
-  args: ['ls']
-  id: 'ls-pwd'
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ["apply","-f","g8"]
-  #args: ["set", "image", "deployment/demoweb", "demoweb=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME"]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=studio'
