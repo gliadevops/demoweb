@@ -10,6 +10,13 @@ steps:
   args: ['g8','deploy','app.yaml','--image-url=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','--version=$TAG_NAME','--dry']
   id: 'g8'
 - name: 'gcr.io/cloud-builders/kubectl'
+  args: ["delete","-f","g8"]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=studio'
+  waitFor:
+  - 'g8'
+- name: 'gcr.io/cloud-builders/kubectl'
   args: ["apply","-f","g8"]
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1-a'
