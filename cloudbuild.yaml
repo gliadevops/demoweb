@@ -6,7 +6,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/$PROJECT_ID/demoweb:$TAG_NAME']
   id: 'push-gcr'
-- name: 'gliadevops/g8-docker'
+- name: 'gcr.io/living-bio/github-livingbio-g8'
   args: ['g8','deploy','app.yaml','--image-url=gcr.io/$PROJECT_ID/demoweb:$TAG_NAME','--version=$TAG_NAME','--dry']
   id: 'g8'
 - name: 'gcr.io/cloud-builders/kubectl'
